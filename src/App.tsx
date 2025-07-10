@@ -1,8 +1,8 @@
-import PricingPlans from './components/PricingPlans'
+import LandingPage from './components/LandingPage'
 
 function App() {
   return (
-    <PricingPlans />
+    <LandingPage />
   )
 }
 
