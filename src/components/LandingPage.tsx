@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Star, ShoppingCart, Truck, Sparkles, RotateCcw, Home, Heart } from "lucide-react";
+import { ArrowRight, Star, ShoppingCart, Truck, Sparkles, RotateCcw, Home, Heart, Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
@@ -82,6 +82,7 @@ const processSteps = [
 
 export default function LandingPage() {
   const [currentBestseller, setCurrentBestseller] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const nextBestseller = () => {
     setCurrentBestseller((prev) => (prev + 1) % bestsellers.length);
@@ -93,6 +94,73 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      {/* Navigation Header */}
+      <nav className="relative bg-white/80 backdrop-blur-md shadow-lg border-b border-gray-200 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            {/* Logo and Brand */}
+            <div className="flex items-center gap-4">
+              <img 
+                src="/mietmaeuse-logo.png" 
+                alt="MietMäuse Logo" 
+                className="h-16 w-auto"
+              />
+              <div className="hidden sm:block">
+                <h1 className="text-2xl font-bold text-gray-900">MietMäuse</h1>
+                <p className="text-sm text-gray-600 -mt-1">Weil Ersteltern zu sein genug schwierig ist</p>
+              </div>
+            </div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-8">
+              <a href="#wie-es-funktioniert" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+                Wie es funktioniert
+              </a>
+              <a href="#bestseller" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+                Bestseller
+              </a>
+              <a href="#preise" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+                Preise
+              </a>
+              <Button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6">
+                Jetzt starten
+              </Button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                <Menu className="h-6 w-6" />
+              </Button>
+            </div>
+          </div>
+
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-200 shadow-lg">
+              <div className="flex flex-col gap-4 p-4">
+                <a href="#wie-es-funktioniert" className="text-gray-700 hover:text-blue-600 font-medium">
+                  Wie es funktioniert
+                </a>
+                <a href="#bestseller" className="text-gray-700 hover:text-blue-600 font-medium">
+                  Bestseller
+                </a>
+                <a href="#preise" className="text-gray-700 hover:text-blue-600 font-medium">
+                  Preise
+                </a>
+                <Button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white">
+                  Jetzt starten
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
+      </nav>
+
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-blue-100 via-purple-50 to-pink-100">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
@@ -104,14 +172,14 @@ export default function LandingPage() {
               </Badge>
               
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-                Weil Elternsein schwer genug ist –{" "}
+                Weil <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-orange-600">Ersteltern</span> zu sein{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                  wir machen's einfacher
+                  genug schwierig ist
                 </span>
               </h1>
               
               <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl">
-                Nachhaltige, günstige und stressfreie Babyartikel im Mietmodell. 
+                <strong>MietMäuse</strong> macht Elternsein einfacher: Nachhaltige, günstige und stressfreie Babyartikel im Mietmodell. 
                 Sparen Sie bis zu 80% und schonen Sie die Umwelt.
               </p>
               
@@ -147,15 +215,19 @@ export default function LandingPage() {
             </div>
             
             <div className="relative">
-              <div className="text-9xl opacity-20 absolute -top-4 -right-4 transform rotate-12">
-                👶
-              </div>
-              <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl">
+              {/* MietMäuse Logo Integration */}
+              <div className="relative bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl">
                 <div className="text-center">
-                  <div className="text-6xl mb-4">🤱</div>
-                  <div className="text-4xl mb-4">❤️</div>
-                  <p className="text-gray-600 font-medium">
+                  <img 
+                    src="/mietmaeuse-logo.png" 
+                    alt="MietMäuse Familie" 
+                    className="w-32 h-32 mx-auto mb-6 opacity-90"
+                  />
+                  <p className="text-gray-600 font-medium text-lg">
                     "MietMäuse hat unser Familienleben revolutioniert!"
+                  </p>
+                  <p className="text-sm text-gray-500 mt-2 italic">
+                    Weil Ersteltern zu sein genug schwierig ist
                   </p>
                   <div className="flex justify-center mt-4">
                     {[...Array(5)].map((_, i) => (
@@ -164,13 +236,21 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div>
+              
+              {/* Floating Brand Elements */}
+              <div className="absolute -top-6 -right-6 bg-amber-100 rounded-full p-4 shadow-lg animate-bounce">
+                <span className="text-2xl">🐭</span>
+              </div>
+              <div className="absolute -bottom-4 -left-4 bg-blue-100 rounded-full p-3 shadow-lg animate-pulse">
+                <span className="text-xl">👶</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Bestseller Highlight Section */}
-      <section className="py-20 bg-white">
+      <section id="bestseller" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -285,7 +365,7 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section id="wie-es-funktioniert" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">

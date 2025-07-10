@@ -88,21 +88,21 @@ const features: PlanFeature[] = [
 const plans = [
   {
     name: "Basic",
-    price: "5,99 €",
+    price: "17,99 €",
     description: "Perfekt für den Einstieg",
     popular: false,
     features: features.map(f => f.basic)
   },
   {
     name: "Pro",
-    price: "11,99 €",
+    price: "22,99 €",
     description: "Ideal für aktive Familien",
     popular: true,
     features: features.map(f => f.pro)
   },
   {
     name: "Premium",
-    price: "18,99 €",
+    price: "36,99 €",
     description: "Das Rundum-sorglos-Paket",
     popular: false,
     features: features.map(f => f.premium)
@@ -234,9 +234,9 @@ export default function PricingPlans() {
                     <td className="p-6 font-medium text-gray-900 bg-gray-50">
                       💶 Preis/Monat
                     </td>
-                    <td className="p-6 text-center text-2xl font-bold text-gray-900">5,99 €</td>
-                    <td className="p-6 text-center text-2xl font-bold text-gray-900 bg-blue-50">11,99 €</td>
-                    <td className="p-6 text-center text-2xl font-bold text-gray-900">18,99 €</td>
+                    <td className="p-6 text-center text-2xl font-bold text-gray-900">17,99 €</td>
+                    <td className="p-6 text-center text-2xl font-bold text-gray-900 bg-blue-50">22,99 €</td>
+                    <td className="p-6 text-center text-2xl font-bold text-gray-900">36,99 €</td>
                   </tr>
                   {features.map((feature, index) => (
                     <tr key={index} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
